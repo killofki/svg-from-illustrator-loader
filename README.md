@@ -1,6 +1,6 @@
-# svg-from-illustrator-loader * arrow version 
+# svg-from-illustrator-loader * arrow version ( not tested ) 
 
-reform-killofki ] A loader for webpack that makes it easy to use SVG from Illustrator
+A loader for webpack that makes it easy to use SVG from Illustrator
 
 ```js
 // React
