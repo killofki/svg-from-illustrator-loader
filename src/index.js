@@ -24,7 +24,7 @@ module .exports = function ( source ) {
 	source = JSON .stringify( source ) 
 	
 	var titlePattern = /<title>(.+)<\/title>/ 
-	var [ , iconName = defaultName ] = source .match( titlePattern ); // match 
+	var [ , iconName ] = source .match( titlePattern ) || [ , defaultName ]; // match 
 	
 	source = 
 		source 
@@ -41,7 +41,9 @@ module .exports = function ( source ) {
 			) 
 	source = 
 		[ 
-			  remove .title && titlePattern 
+			source 
+			
+			, remove .title && titlePattern // regExp 
 			, remove .xmlns && ' xmlns="http://www.w3.org/2000/svg"' 
 			, ... ( remove .space ? [ 
 				
