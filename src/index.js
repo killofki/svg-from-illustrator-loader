@@ -8,7 +8,7 @@ module .exports = function ( source ) {
 	var exportStyle = options .exportStyle || 'default' 
 	var defaultName = options .defaultName 
 	
-	if ( exportStyle === 'name' && !defaultName ) { 
+	if ( exportStyle === 'name' && ! defaultName ) { 
 		throw new Error( 'if exportStyle is a name, defaultName is required' ) 
 		} 
 	
@@ -20,7 +20,7 @@ module .exports = function ( source ) {
 	
 	var titlePattern = /<title>(.+)<\/title>/ 
 	var match = source .match( titlePattern ) 
-	var iconName = match ? match[1] : defaultName 
+	var iconName = match ? match[ 1 ] : defaultName 
 	
 	source = 
 		source 
