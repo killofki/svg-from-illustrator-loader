@@ -1,12 +1,16 @@
 var { getOptions } = require( 'loader-utils' ) 
 
 module .exports = function ( source ) { 
-	var options = getOptions( this ) 
-	var name = options .name || '[name]-[index]' 
-	var illustratorClass = options .illustratorClass || 'cls' 
-	var remove = options .remove || {} 
-	var exportStyle = options .exportStyle || 'default' 
-	var defaultName = options .defaultName 
+	var 
+		{ 
+			  name = '[name]-[index]' 
+			, illustratorClass = 'cls' 
+			, remove = {} 
+			, exportStyle = 'default' 
+			, defaultName 
+			} 
+			= getOptions( this ) 
+		; 
 	
 	if ( exportStyle === 'name' && ! defaultName ) { 
 		throw new Error( 'if exportStyle is a name, defaultName is required' ) 
@@ -53,7 +57,7 @@ module .exports = function ( source ) {
 	
 	exportStyle = 
 		  ( exportStyle === 'none' ) ? '' 
-		: ( exportStyle === 'name' ) ? '.' + iconName 
+		: ( exportStyle === 'name' ) ? `.${ iconName }` 
 		: '.default' 
-	return 'module .exports' + exportStyle + ' = ' + source 
+	return `module .exports${ exportStyle } = ${ source }` 
 	} 
