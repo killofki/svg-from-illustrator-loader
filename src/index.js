@@ -41,7 +41,7 @@ module .exports = function ( source ) {
 			) 
 	source = 
 		[ 
-			source 
+			  source 
 			
 			, remove .title && titlePattern // regExp 
 			, remove .xmlns && ' xmlns="http://www.w3.org/2000/svg"' 
