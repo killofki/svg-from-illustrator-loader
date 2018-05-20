@@ -29,7 +29,7 @@ module .exports = function ( source ) {
 		source 
 		.replace( 
 			  new RegExp( '(\\.)?' + illustratorClass + '-(\\d+)', 'g' ) 
-			, function (_, dot, iconIndex) { 
+			, function ( _, dot, iconIndex ) { 
 				return ( 
 					( ( dot || '' ) + name ) 
 					.replace( '[name]', iconName ) 
