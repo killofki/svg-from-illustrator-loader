@@ -9,7 +9,7 @@ module .exports = function ( source ) {
 			, exportStyle = 'default' 
 			, defaultName 
 			} 
-			= getOptions( this ) 
+			= getOptions( this ) // options 
 		; 
 	
 	if ( exportStyle === 'name' && ! defaultName ) { 
@@ -23,8 +23,7 @@ module .exports = function ( source ) {
 	source = JSON .stringify( source ) 
 	
 	var titlePattern = /<title>(.+)<\/title>/ 
-	var match = source .match( titlePattern ) 
-	var iconName = match ? match[ 1 ] : defaultName 
+	var [ , iconName = defaultName ] = source .match( titlePattern ); // match 
 	
 	source = 
 		source 
