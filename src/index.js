@@ -2,14 +2,15 @@ var { getOptions } = require( 'loader-utils' )
 
 module .exports = function ( source ) { 
 	var 
-		{ 
+		  options = getOptions( this ) 
+		, { 
 			  name = '[name]-[index]' 
 			, illustratorClass = 'cls' 
 			, remove = {} 
 			, exportStyle = 'default' 
 			, defaultName 
 			} 
-			= getOptions( this ) // options 
+			= options 
 		; 
 	
 	if ( exportStyle === 'name' && ! defaultName ) { 
