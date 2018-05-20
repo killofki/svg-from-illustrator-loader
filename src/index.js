@@ -29,34 +29,32 @@ module .exports = function ( source ) {
 		source 
 		.replace( 
 			  new RegExp( '(\\.)?' + illustratorClass + '-(\\d+)', 'g' ) 
-			, function ( _, dot, iconIndex ) { 
-				return ( 
-					( ( dot || '' ) + name ) 
-					.replace( '[name]', iconName ) 
-					.replace( '[index]', iconIndex ) 
-					) 
-				} 
+			, ( _, dot, iconIndex ) => 
+				[ 
+					  `${ dot || '' }${ name }` 
+					
+					, [ '[name]', iconName ] 
+					, [ '[index]', iconIndex ] 
+					] 
+				.reduce( ( t, [ r, v ] ) => t .replace( r, v )  ) 
 			) 
-	
-	if ( remove .title ) { 
-		source = source .replace( titlePattern, '' ) 
-		} 
-	
-	if ( remove .xmlns ) { 
-		source = source .replace( ' xmlns="http://www.w3.org/2000/svg"', '' ) 
-		} 
-	
-	if ( remove .space ) { 
-		source = 
-			source 
-			.replace( /[\r\n]+/g, '' ) 
-			.replace( /\s{2,}/g, '' ) 
-			.replace( /: /g, ':' ) 
-		} 
+	source = 
+		[ 
+			  remove .title && titlePattern 
+			, remove .xmlns && ' xmlns="http://www.w3.org/2000/svg"' 
+			, ... ( remove .space ? [ 
+				
+				  /[\r\n]+/g 
+				, /\s{2,}/g 
+				, /: /g 
+				
+				] : [] ) 
+			] 
+		.reduce( ( t, r ) => r ? t .replace( r, '' ) : t ) 
 	
 	exportStyle = 
 		  ( exportStyle === 'none' ) ? '' 
 		: ( exportStyle === 'name' ) ? `.${ iconName }` 
-		: '.default' 
+		: ' .default' 
 	return `module .exports${ exportStyle } = ${ source }` 
 	} 
